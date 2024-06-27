@@ -7,14 +7,8 @@ use App\Repositories\MovieRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class MovieController extends Controller
+class MovieController extends BaseController
 {
-    public function __construct(
-        protected MovieRepository $movieRepository
-    )
-    {
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -28,21 +22,11 @@ class MovieController extends Controller
 
         if ($response->successful()) {
             $data = $response->json();
-            foreach ($data['results'] as $datum) {
 
-                $this->movieRepository->create($datum);
-            }
-            return response()->json(['success' => 'All data added from API'], $response->status());
+            return $this->successResponse($data['results']);
         } else {
-            return response()->json(['error' => 'Unable to fetch data from API'], $response->status());
+            return $this->errorResponse(null,'Unable to fetch data from API');
         }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
     }
 
     /**
