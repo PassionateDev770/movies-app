@@ -8,6 +8,7 @@ use Livewire\Component;
 class MovieController extends Component
 {
     public $movies;
+    public $selectedMovie;
 
     public function mount()
     {
@@ -21,7 +22,15 @@ class MovieController extends Component
         $data = $response->json();
 
         $this->movies = $data['results'];
+
+        $this->selectedMovie = null;
     }
+
+    public function selectMovie($movieId)
+    {
+        return redirect()->route('movie.details', ['movieId' => $movieId]);
+    }
+
     public function render()
     {
         return view('components.movie-controller');
