@@ -8,6 +8,7 @@ use Livewire\Component;
 class MovieDetails extends Component
 {
     public $movie;
+
     public function mount($movieId)
     {
         $url = "https://api.themoviedb.org/3/movie/{$movieId}?language=en-US";
@@ -17,6 +18,7 @@ class MovieDetails extends Component
 
         $this->movie = $response->json();
     }
+
     public function render()
     {
         return view('components.movie-details')->layout('layouts.app');

@@ -1,6 +1,6 @@
 1- Copier le fichier .env.example dans .env
-2- ./vendor/bin/sail up ##Pour démarer le docker
-3- ./vendor/bin/sail exec -it laravel.test bash ##Pour accéder à l'application laravel
+2- ./vendor/bin/sail up ##Pour démarer les dockers
+3- docker exec -it movies-app-laravel.test-1 bash ##Pour accéder à l'application laravel
 4- composer install
 5- npm install
 6- php artisan migrate
